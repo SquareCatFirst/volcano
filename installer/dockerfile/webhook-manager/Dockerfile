@@ -17,6 +17,7 @@ WORKDIR /go/src/volcano.sh/
 COPY go.mod go.sum ./
 # Copy staging directory before go mod download since go.mod has replace directive
 COPY staging/ ./staging/
+ENV GOPROXY=https://goproxy.cn,direct
 RUN go mod download
 ADD . volcano
 RUN cd volcano && make vc-webhook-manager
